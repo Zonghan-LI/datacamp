@@ -2,7 +2,7 @@ import numpy as np
 import gradio
 import tensorflow as tf
 
-model = tf.load('cnn.h5')
+model = tf.keras.models.load_model('cnn.h5')
 
 def pneumoniaPrediction(img):
     img = np.array(img)/255
