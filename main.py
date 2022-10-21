@@ -18,6 +18,7 @@ interface = gradio.Interface(fn = pneumoniaPrediction,
                             title = "Pneumonia Detection using Chest X-Ray",
                             inputs = img,
                             outputs = label,
-                            interpretation = "default")
+                            interpretation = "default",
+                            server_port=80)
 
 interface.launch(debug=True, share=True)
