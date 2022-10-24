@@ -1,17 +1,17 @@
 import numpy as np
-import gradio
+
 import tensorflow as tf
 
 model = tf.keras.models.load_model('cnn.h5')
 
 def pneumoniaPrediction(img):
     img = np.array(img)/255
-    img = img.reshape(-1, 150, 150, 1)
+    img = img.reshape(-1, 64, 64, 3)
     isPneumonic = model.predict(img)[0]
     imgClass = "Normal" if isPneumonic<0.5 else "Pneumonic"
     return imgClass
-
-img = gradio.inputs.Image(shape=(150, 150))
+import gradio
+img = gradio.inputs.Image(shape=(64, 64))
 label = gradio.outputs.Label(num_top_classes=1)
 
 interface = gradio.Interface(fn = pneumoniaPrediction,
@@ -19,6 +19,6 @@ interface = gradio.Interface(fn = pneumoniaPrediction,
                             inputs = img,
                             outputs = label,
                             interpretation = "default",
-                            server_port=80)
+                            server_port = 8000)
 
 interface.launch(debug=True, share=True)
