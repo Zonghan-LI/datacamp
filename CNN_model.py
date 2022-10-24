@@ -38,9 +38,9 @@ def read_directory(directory_name):
         img = cv2.imread(directory_name + "/" + filename)
 
 
-train = read_directory("train")
-test = read_directory("test")
-val = read_directory("val")
+train = read_directory("../chest_xray/train")
+test = read_directory("../chest_xray/test")
+val = read_directory("../chest_xray/val")
 
 x_train = []
 y_train = []
